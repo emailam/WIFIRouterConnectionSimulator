@@ -1,21 +1,36 @@
+import java.util.Scanner;
 
 public class Network {
     public static void main(String[] args) {
-        int maxConnections = 2;
-        int totalDevices = 4;
+        Scanner scanner = new Scanner(System.in);
+        FileSaver.clearFile();
+
+        System.out.print("What is the number of WI-FI Connections?");
+        int maxConnections = scanner.nextInt();
+
+        System.out.print("What is the number of devices Clients want to connect?");
+        int totalDevices = scanner.nextInt();
+
 
         Router.setSize(maxConnections);
         Semaphore s = new Semaphore(maxConnections);
 
         Device[] devices = new Device[totalDevices];
-        devices[0] = new Device("C1", "mobile", s);
-        devices[1] = new Device("C2", "tablet", s);
-        devices[2] = new Device("C3", "pc", s);
-        devices[3] = new Device("C4", "pc", s);
+
+        for (int i = 0; i < totalDevices; i++) {
+            System.out.print("Enter the name of Device " + (i + 1) + ": ");
+            String name = scanner.next();
+
+            System.out.print("Enter the type of Device " + (i + 1) + " (e.g., mobile, tablet, pc): ");
+            String type = scanner.next();
+
+            devices[i] = new Device(name, type, s);
+        }
 
         for (Device device : devices) {
             device.start();
         }
 
+        scanner.close();
     }
 }

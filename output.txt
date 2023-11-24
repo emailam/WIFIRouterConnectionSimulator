@@ -1,0 +1,50 @@
+(f) (pc) arrived
+Connection 1: f Occupied
+(h) (pc) arrived
+Connection 2: h Occupied
+Connection 1: f login
+(j) (pc) arrived and waiting
+(a) (pc) arrived and waiting
+(d) (pc) arrived and waiting
+(c) (pc) arrived and waiting
+(g) (pc) arrived and waiting
+(i) (pc) arrived and waiting
+(b) (pc) arrived and waiting
+Connection 1: f performs online activity
+(e) (pc) arrived and waiting
+Connection 2: h login
+Connection 2: h performs online activity
+Connection 1: f LoggedOut
+Connection 1: j Occupied
+Connection 2: h LoggedOut
+Connection 2: a Occupied
+Connection 1: j login
+Connection 1: j performs online activity
+Connection 1: j LoggedOut
+Connection 1: d Occupied
+Connection 2: a login
+Connection 1: d login
+Connection 1: d performs online activity
+Connection 2: a performs online activity
+Connection 2: a LoggedOut
+Connection 2: c Occupied
+Connection 2: c login
+Connection 1: d LoggedOut
+Connection 1: g Occupied
+Connection 2: c performs online activity
+Connection 2: c LoggedOut
+Connection 2: i Occupied
+Connection 1: g login
+Connection 2: i login
+Connection 1: g performs online activity
+Connection 1: g LoggedOut
+Connection 1: b Occupied
+Connection 2: i performs online activity
+Connection 1: b login
+Connection 1: b performs online activity
+Connection 2: i LoggedOut
+Connection 2: e Occupied
+Connection 1: b LoggedOut
+Connection 2: e login
+Connection 2: e performs online activity
+Connection 2: e LoggedOut

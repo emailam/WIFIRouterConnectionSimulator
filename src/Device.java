@@ -1,11 +1,11 @@
 import java.util.Random;
 
-public class Device extends Thread{
+public class Device extends Thread {
     protected String name, type;
     protected Semaphore s;
     protected int connectionNum;
 
-    protected Device(String name, String type, Semaphore s){
+    protected Device(String name, String type, Semaphore s) {
         this.name = name;
         this.type = type;
         this.s = s;
@@ -16,16 +16,16 @@ public class Device extends Thread{
         Router.add(this);
     }
 
-    public void logIn(){
-        System.out.println("Connection " + connectionNum + ": " + name + " login");
+    public void logIn() {
+        FileSaver.addLine("Connection " + connectionNum + ": " + name + " login");
     }
 
-    public void perform(){
-        System.out.println("Connection " + connectionNum + ": " + name + " performs online activity");
+    public void perform() {
+        FileSaver.addLine("Connection " + connectionNum + ": " + name + " performs online activity");
     }
 
-    public void logOut(){
-        System.out.println("Connection " + connectionNum + ": " + name + " LoggedOut");
+    public void logOut() {
+        FileSaver.addLine("Connection " + connectionNum + ": " + name + " LoggedOut");
         Router.remove(this);
         s.signalV();
     }
@@ -35,51 +35,51 @@ public class Device extends Thread{
         sleep(rand.nextInt(1000));
     }
 
-    public void run(){
+    public void run() {
         try {
             randomWait();
-        }
-        catch (InterruptedException e) {
+        } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        System.out.println("(" + name + ") (" + type + ") arrived");
+        if (s.isFull()) {
+            FileSaver.addLine("(" + name + ") (" + type + ") arrived" + " and waiting");
+        }
+        else{
+            FileSaver.addLine("(" + name + ") (" + type + ") arrived");
+        }
         try {
             connect();
-        }
-        catch (InterruptedException e) {
+        } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
 
         try {
             randomWait();
-        }
-        catch (InterruptedException e) {
+        } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
         logIn();
 
         try {
             randomWait();
-        }
-        catch (InterruptedException e) {
+        } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
         perform();
 
         try {
             randomWait();
-        }
-        catch (InterruptedException e) {
+        } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
         logOut();
     }
 
-    public void setConnectionNum(int num){
+    public void setConnectionNum(int num) {
         connectionNum = num;
     }
 
-    public String getDeviceName(){
+    public String getDeviceName() {
         return name;
     }
 }

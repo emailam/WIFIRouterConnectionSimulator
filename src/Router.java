@@ -17,7 +17,7 @@ public class Router {
             if(connected.get(i) == null){
                 connected.set(i, device);
                 device.setConnectionNum(i + 1);
-                System.out.println("Connection " + (i + 1) + ": " + device.getDeviceName() + " Occupied");
+                FileSaver.addLine("Connection " + (i + 1) + ": " + device.getDeviceName() + " Occupied");
                 break;
             }
         }
